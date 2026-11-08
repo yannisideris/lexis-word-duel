@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: lexis
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/config
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      # Free models only. Order: GPT-OSS 120B, GPT-OSS 20B (Groq), Gemini 3.5 Flash-Lite,
+      # Gemma 4 26B (Google), Gemma 4 26B :free (OpenRouter, only if its key is set).
+      - key: LLM_PROVIDERS
+        value: groq,groq2,google,gemma,openrouter
+      # Each AI turn starts with a random model; GPT-OSS is favoured (best at placing its own words).
+      - key: LLM_WEIGHTS
+        value: groq:3,groq2:2,google:1,gemma:1
+      - key: AI_THINKING
+        value: "0"
+      - key: AI_MOVES_PER_MINUTE
+        value: "8"
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false

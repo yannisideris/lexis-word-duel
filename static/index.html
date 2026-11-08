@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lexis · Word Duel</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <h1>Lexis <span>word duel vs <span class="ai-name">AI</span></span></h1>
+  <div class="scores">
+    <div class="score" id="score-human"><small>You</small><b>0</b></div>
+    <div class="score" id="score-ai"><small class="ai-name">AI</small><b>0</b></div>
+    <div class="score bag"><small>Bag</small><b id="bag-count">0</b></div>
+  </div>
+</header>
+<main>
+  <section id="board-wrap">
+    <div id="board"></div>
+    <div id="preview"></div>
+    <div id="rack"></div>
+    <div class="controls">
+      <button id="btn-play" class="primary">Play</button>
+      <button id="btn-recall">Recall</button>
+      <button id="btn-shuffle">Shuffle</button>
+      <button id="btn-exchange">Exchange</button>
+      <button id="btn-pass">Pass</button>
+    </div>
+  </section>
+  <aside>
+    <div class="status" id="status">Your turn.</div>
+    <label class="toggle"><input type="checkbox" id="thinking"> <span class="ai-name">AI</span> thinking phase (slower, deeper)</label>
+    <div id="log"></div>
+    <button id="btn-new" class="ghost">New game</button>
+  </aside>
+</main>
+<dialog id="blank-dlg">
+  <form method="dialog">
+    <p>Letter for the blank tile:</p>
+    <input id="blank-input" maxlength="1" autocomplete="off" pattern="[A-Za-z]" required>
+    <button value="ok">OK</button>
+  </form>
+</dialog>
+<script src="/static/app.js"></script>
+</body>
+</html>
